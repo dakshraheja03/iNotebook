@@ -7,7 +7,7 @@ import NoteState from './context/NoteState';
 import Alert from './components/Alert';
 
 
-function App() {
+function App() {         
   return (
     <>
     <NoteState>
