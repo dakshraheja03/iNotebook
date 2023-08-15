@@ -3,6 +3,9 @@ import { Link, useLocation} from 'react-router-dom'
 
 function Navbar() {
   let location = useLocation();
+  const handleLogout=()=>{
+    localStorage.setItem('token',"")
+  }
   return (
     <>
     <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top ">
@@ -20,10 +23,13 @@ function Navbar() {
                 <Link className={`nav-link ${location.pathname==='/about'?"active":""}`} to="/about">About</Link>
                 </li>
             </ul>
-            <form className="d-flex" role="search">
-            <Link class="btn btn-primary" to="/login" role="button">Login</Link>
-            <Link class="btn btn-primary mx-2" to="/signup" role="button">Signup</Link>
-            </form>
+            {!(localStorage.getItem('token')) && <form className="d-flex" role="search">
+            <Link className="btn btn-primary" to="/login" role="button">Login</Link>
+            <Link className="btn btn-primary mx-2" to="/signup" role="button">Signup</Link>
+            </form>}
+            {localStorage.getItem('token') && <form className="d-flex" role="search">
+            <Link className="btn btn-primary" to="/login" role="button" onClick={handleLogout}>Logout</Link>
+            </form>}
             </div>
         </div>
     </nav>

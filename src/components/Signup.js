@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import { useNavigate } from "react-router";
 
-function Signup() {
+function Signup(props) {
+  localStorage.setItem('token',"")
   let history=useNavigate();
       const [credentials, setcredentials] = useState({"name":"","email":"", "password": "","cpassword":""})
       const handleChange=(e)=>{
@@ -19,16 +20,18 @@ function Signup() {
             const json= await response.json();
             console.log(json)
             if(json.success && (credentials.password===credentials.cpassword)){
+              props.showAlert("Registration Successful","success")
               localStorage.setItem('token',json.authToken)
               history("/")
             }
             else{
-              alert("Invalid")
+              props.showAlert("Invalid Credentials","danger")
             }
 
       }
   return (
     <>
+    <h3>Please Signup to use iNoteBook</h3>
     <form onSubmit={handleSubmit}>
     <div className="mb-3 my-4">
         <label htmlFor="name" className="form-label">

@@ -12,10 +12,12 @@ import {useState} from "react";
 
 function App() {    
   const [alertText, setAlertText] = useState("")
-  const [alert, setalert] = useState(null)     
-  const showAlert=(text)=>{
+  const [alert, setalert] = useState(null) 
+  const [alertType, setalertType] = useState("")    
+  const showAlert=(text,type)=>{
     setalert(1)
     setAlertText(text)
+    setalertType(type)
     setTimeout(() => {
       setalert(null)
     }, 2000);
@@ -25,13 +27,13 @@ function App() {
     <NoteState>
     <Router>
     <Navbar/>
-    <Alert alertText={alertText} alert={alert}/>
+    <Alert alertText={alertText} alert={alert} alertType={alertType} />
     <div className="container">
             <Routes>
-                <Route exact path='/' element={<Home/>}></Route>
+                <Route exact path='/' element={<Home showAlert={showAlert} />}></Route>
                 <Route exact path='/about' element={<About/>}></Route> 
-                <Route exact path='/login' element={<Login/>}></Route> 
-                <Route exact path='/signup' element={<Signup/>}></Route> 
+                <Route exact path='/login' element={<Login showAlert={showAlert} />}></Route> 
+                <Route exact path='/signup' element={<Signup showAlert={showAlert} />}></Route> 
             </Routes>
     </div>
     </Router>
