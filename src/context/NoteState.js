@@ -24,6 +24,7 @@ const NoteState=(props)=>{
       //Add a Note
       const addNote=async(title,description,tag)=>{
           const url="http://localhost:5000/api/notes/addnote"
+          // eslint-disable-next-line
           const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -38,6 +39,7 @@ const NoteState=(props)=>{
 
       //Delete a Node
       const deleteNote=async(id)=>{
+        // eslint-disable-next-line
           const response = await fetch(`http://localhost:5000/api/notes/deletenote/${id}`, {
             method: 'DELETE',
             headers: {
@@ -50,6 +52,7 @@ const NoteState=(props)=>{
 
       //Edit a Note
       const editNote=async (id,title,description,tag)=>{
+        // eslint-disable-next-line
         const response = await fetch(`http://localhost:5000/api/notes/updatenote/${id}`, {
           method: 'PUT',
           headers: {

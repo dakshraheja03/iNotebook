@@ -20,16 +20,16 @@ function Notes() {
     ref.current.click()
     setNote({id: currNote._id,etitle: currNote.title,edescription: currNote.description,etag: currNote.tag})
   }
-    const {addNote}= context
+    // const {addNote}= context
     const [note, setNote] = useState({id: "", etitle: "",edescription:"",etag:""})
 
     const handleClick=()=>{
       editNote(note.id,note.etitle,note.edescription,note.etag)
       refClose.current.click()
       }
-    const handleChange=(e)=>{
-          setNote({...note,[e.target.name]: e.target.value})
-      }
+      const handleChange=(e)=>{
+        setNote({...note,[e.target.name]: e.target.value})
+    }
 
   return (
     <>

@@ -5,21 +5,33 @@ import Navbar from './components/Navbar';
 import { BrowserRouter as Router,Routes, Route} from 'react-router-dom';
 import NoteState from './context/NoteState';
 import Alert from './components/Alert';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import {useState} from "react";
 
 
-function App() {         
+function App() {    
+  const [alertText, setAlertText] = useState("")
+  const [alert, setalert] = useState(null)     
+  const showAlert=(text)=>{
+    setalert(1)
+    setAlertText(text)
+    setTimeout(() => {
+      setalert(null)
+    }, 2000);
+  }
   return (
     <>
     <NoteState>
     <Router>
     <Navbar/>
-    <div  style={{height: "50px"}}>
-    <Alert message="Alert Component Created" />
-    </div>
+    <Alert alertText={alertText} alert={alert}/>
     <div className="container">
             <Routes>
                 <Route exact path='/' element={<Home/>}></Route>
                 <Route exact path='/about' element={<About/>}></Route> 
+                <Route exact path='/login' element={<Login/>}></Route> 
+                <Route exact path='/signup' element={<Signup/>}></Route> 
             </Routes>
     </div>
     </Router>
