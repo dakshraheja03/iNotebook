@@ -8,6 +8,7 @@ import Alert from './components/Alert';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import {useState} from "react";
+import DarkState from './context/DarkState';
 
 
 function App() {    
@@ -24,6 +25,7 @@ function App() {
   }
   return (
     <>
+    <DarkState>
     <NoteState>
     <Router>
     <Navbar/>
@@ -38,6 +40,7 @@ function App() {
     </div>
     </Router>
     </NoteState>
+    </DarkState>
     </>
   );
 }
